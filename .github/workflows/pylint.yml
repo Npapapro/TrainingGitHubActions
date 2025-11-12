@@ -1,0 +1,26 @@
+name: Pylint
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.11.14
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.11.14
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v1
+    - name: Install dependencies
+      run: |
+        uv sync
+        uv python run pylint
+    - name: Analysing the code with pylint
+      run: |
+        pylint $(git ls-files '*.py')
