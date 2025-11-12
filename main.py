@@ -1,4 +1,8 @@
-def main():
+"""Entry point for the cicd project."""
+
+
+def main() -> None:
+    """Display a greeting message."""
     print("Hello from cicd!")
 
 
